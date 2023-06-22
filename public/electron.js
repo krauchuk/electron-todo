@@ -10,7 +10,11 @@ const createWindow = () => {
     },
   })
 
-  win.loadFile(path.join(__dirname, 'index.html'))
+  win.loadURL(!app.isPackaged ? 'http://localhost:3000' : `file://${path.join(__dirname, 'index.html')}`)
+
+  if (!app.isPackaged) {
+    mainWindow.webContents.openDevTools()
+  }
 }
 
 app.whenReady().then(() => {

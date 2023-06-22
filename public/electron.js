@@ -1,19 +1,20 @@
 const path = require('path')
 const { app, BrowserWindow } = require('electron')
-const isDev = require('electron-is-dev')
 
 const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true,
+      preload: path.join(__dirname, 'preload.js'),
     },
   })
 
-  win.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`)
+  win.loadURL(!app.isPackaged ? 'http://localhost:3000' : `file://${path.join(__dirname, 'index.html')}`)
 
-  win.webContents.openDevTools()
+  if (!app.isPackaged) {
+    mainWindow.webContents.openDevTools()
+  }
 }
 
 app.whenReady().then(() => {

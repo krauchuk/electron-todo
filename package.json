@@ -2,13 +2,16 @@
   "name": "electron-todo",
   "version": "1.0.0",
   "description": "Simple todo app",
+  "homepage": "./",
+  "main": "./public/electron.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "electron:dev": "concurrently \"cross-env BROWSER=none npm start\" \"wait-on http://127.0.0.1:3000 && tsc -p electron -w\" \"wait-on http://127.0.0.1:3000 && tsc -p electron && electron .\"",
-    "electron:build": "npm build && tsc -p electron && electron-builder",
-    "electron:dist": "npm build && tsc -p electron && electron-builder --mac --dir"
+    "electron:start": "concurrently -k \"cross-env BROWSER=none npm start\" \"wait-on http://127.0.0.1:3000 && electronmon .\"",
+    "electron:package:mac": "npm run build && electron-builder -m -c.extraMetadata.main=build/electron.js",
+    "electron:package:win": "npm run build && electron-builder -w -c.extraMetadata.main=build/electron.js",
+    "electron:package:linux": "npm run build && electron-builder -l -c.extraMetadata.main=build/electron.js"
   },
   "repository": {
     "type": "git",
@@ -21,7 +24,7 @@
     "cross-env": "^7.0.3",
     "electron": "^25.2.0",
     "electron-builder": "^24.4.0",
-    "electron-is-dev": "^2.0.0",
+    "electronmon": "^2.0.2",
     "wait-on": "^7.0.1"
   },
   "dependencies": {
@@ -31,14 +34,30 @@
   },
   "browserslist": {
     "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+      "last 1 electron version"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 electron version"
     ]
+  },
+  "build": {
+    "appId": "com.electron.todoapp",
+    "productName": "Todo-app",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "public"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "deb"
+    }
   }
 }

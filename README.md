@@ -3,10 +3,13 @@
 ## Development
 
 1. Install dependencies: `npm install`
-2. Start app: Desktop app - `npm start electron:start`, Web app - `npm start`
+2. Run app:
+   - Desktop app - `npm start`
+   - Web app - `npm start:web`
 
 ## Build
 
-MacOS: `npm run electron:package:mac`\
-Windows: `npm run electron:package:win`\
-Linux: `npm run electron:package:linux`
+MacOS: `npm run build:mac`\
+Windows: `npm run build:win`\
+Linux: `npm run build:linux`\
+Web App: `npm run build`

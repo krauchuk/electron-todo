@@ -4,9 +4,14 @@
 }
 
 :root {
-  --color-black: #201e20;
-  --color-primary: #e0a96d;
-  --color-secondary: #ddc3a5;
+  --color-black: #2b2a2b;
+  --color-black-dark: #252425;
+  --color-white: #fff;
+  --color-grey: #c5c5c5;
+}
+
+html {
+  font-size: 20px;
 }
 
 body {

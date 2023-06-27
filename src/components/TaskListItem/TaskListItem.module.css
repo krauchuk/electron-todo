@@ -1,0 +1,10 @@
+.task {
+  padding: 0.5rem;
+  color: var(--color-grey);
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
+
+.isSelected {
+  background: var(--color-black);
+}

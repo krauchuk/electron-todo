@@ -1,7 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
+
+import TaskListItem from '../TaskListItem'
+import { Context } from '../../store/Provider'
+import styles from './TaskList.module.css'
 
 const TaskList = () => {
-  return null
+  const { tasks } = useContext(Context)
+
+  return (
+    <div className={styles.container}>
+      {tasks.map(task => (
+        <TaskListItem key={task.id} id={task.id} name={task.name} />
+      ))}
+    </div>
+  )
 }
 
 export default TaskList

@@ -1,6 +1,38 @@
+.container {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .topPanel {
-  width: 100%;
+  padding: 0.5rem;
+  background: var(--color-black-dark);
 }
 
 .workspace {
+  display: flex;
+  flex: 1;
+}
+
+.bottomPanel {
+  text-align: center;
+  background: var(--color-black-dark);
+  color: var(--color-grey);
+  font-size: 0.6rem;
+  padding: 0.3rem;
+}
+
+.bottomPanel a {
+  color: var(--color-white);
+}
+
+.leftPanel {
+  flex: 1;
+  max-width: 300px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.rightPanel {
+  flex: 2;
 }

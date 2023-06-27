@@ -1,5 +1,7 @@
 # electron-todo
 
+A simple application to manage your tasks
+
 ## Development
 
 1. Install dependencies: `npm install`

@@ -1,7 +1,7 @@
 const path = require('path')
-const { app, BrowserWindow, TouchBar } = require('electron')
+const { app, BrowserWindow } = require('electron')
 
-const { TouchBarButton } = TouchBar
+const { getTouchBarConfig } = require('./touchBar.js')
 
 const createWindow = () => {
   const win = new BrowserWindow({
@@ -14,19 +14,7 @@ const createWindow = () => {
   })
 
   if (process.platform === 'darwin') {
-    const touchBar = new TouchBar({
-      items: [
-        new TouchBarButton({
-          label: 'Add Task',
-          accessibilityLabel: 'Add task',
-          backgroundColor: '#6ab04c',
-          click: () => {
-            win.webContents.send('add-task')
-          },
-        }),
-      ],
-    })
-
+    const touchBar = getTouchBarConfig(win)
     win.setTouchBar(touchBar)
   }
 

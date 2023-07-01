@@ -22,7 +22,6 @@ const TaskListItem = ({ id, name }: Props) => {
 
   const handleRemoveBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
-    if (selectedTask?.id === id) selectTask(null)
     removeTask(id)
   }
 

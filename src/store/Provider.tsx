@@ -14,9 +14,22 @@ const Provider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem('tasks', JSON.stringify(tasks))
   }, [tasks])
 
-  const addTask = (task: Task) => setTasks(prev => [...prev, task])
+  const addTask = () =>
+    setTasks(prev => [
+      ...prev,
+      {
+        id: Date.now(),
+        name: 'New task',
+        content: '',
+      },
+    ])
 
-  const removeTask = (id: number) => setTasks(prev => prev.filter(task => task.id !== id))
+  const removeTask = (id: number) => {
+    setTasks(prev => prev.filter(task => task.id !== id))
+    if (selectedTask?.id === id) {
+      setSelectedTask(null)
+    }
+  }
 
   const renameTask = (id: number, name: string) =>
     setTasks(prev => prev.map((task: Task) => (task.id === id ? { ...task, name } : task)))

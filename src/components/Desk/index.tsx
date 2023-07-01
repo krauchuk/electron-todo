@@ -4,28 +4,15 @@ import Button from '../Button'
 import TaskList from '../TaskList'
 import TaskEditor from '../TaskEditor'
 import { Context } from '../../store/Provider'
-import { ipcRenderer } from '../../utils'
 import styles from './Desk.module.css'
 
 const Desk = () => {
   const { addTask, selectedTask, tasks } = useContext(Context)
 
-  const handleAddTask = () => {
-    addTask({
-      id: Date.now(),
-      name: 'New task',
-      content: '',
-    })
-  }
-
-  useEffect(() => {
-    ipcRenderer.on('add-task', handleAddTask)
-  }, [])
-
   return (
     <div className={styles.container}>
       <div className={styles.topPanel}>
-        <Button text="Add task" onClick={handleAddTask} />
+        <Button text="Add task" onClick={addTask} />
       </div>
       <div className={styles.workspace}>
         <div className={styles.leftPanel}>

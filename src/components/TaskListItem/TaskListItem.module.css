@@ -18,6 +18,7 @@
   display: flex;
   gap: 0.25rem;
   visibility: hidden;
+  max-height: 44px;
 }
 
 .renameBtn path {

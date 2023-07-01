@@ -1,14 +1,34 @@
 const path = require('path')
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, TouchBar } = require('electron')
+
+const { TouchBarButton } = TouchBar
 
 const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
+      contextIsolation: false,
+      nodeIntegration: true,
     },
   })
+
+  if (process.platform === 'darwin') {
+    const touchBar = new TouchBar({
+      items: [
+        new TouchBarButton({
+          label: 'Add Task',
+          accessibilityLabel: 'Add task',
+          backgroundColor: '#6ab04c',
+          click: () => {
+            win.webContents.send('add-task')
+          },
+        }),
+      ],
+    })
+
+    win.setTouchBar(touchBar)
+  }
 
   win.loadURL(!app.isPackaged ? 'http://localhost:3000' : `file://${path.join(__dirname, 'index.html')}`)
 

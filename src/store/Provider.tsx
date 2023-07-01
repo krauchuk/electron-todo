@@ -1,10 +1,8 @@
-import React, { useState, ReactNode } from 'react'
+import React, { useState, ReactNode, useEffect } from 'react'
 
 import { Task, TaskContext } from '../types/task'
 
 const initTasks = JSON.parse(localStorage.getItem('tasks') || '[]')
-
-const updateStore = (tasks: Task[]) => localStorage.setItem('tasks', JSON.stringify(tasks))
 
 export const Context = React.createContext<TaskContext>({} as TaskContext)
 
@@ -12,31 +10,21 @@ const Provider = ({ children }: { children: ReactNode }) => {
   const [selectedTask, setSelectedTask] = useState<Task | null>(null)
   const [tasks, setTasks] = useState<Task[]>(initTasks)
 
-  const addTask = (task: Task) => {
-    const newArray = [...tasks, task]
-    setTasks(newArray)
-    updateStore(newArray)
-  }
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+  }, [tasks])
 
-  const removeTask = (id: number) => {
-    const newArray = tasks.filter(task => task.id !== id)
-    setTasks(newArray)
-    updateStore(newArray)
-  }
+  const addTask = (task: Task) => setTasks(prev => [...prev, task])
 
-  const renameTask = (id: number, name: string) => {
-    const newArray = tasks.map((task: Task) => (task.id === id ? { ...task, name } : task))
-    setTasks(newArray)
-    updateStore(newArray)
-  }
+  const removeTask = (id: number) => setTasks(prev => prev.filter(task => task.id !== id))
+
+  const renameTask = (id: number, name: string) =>
+    setTasks(prev => prev.map((task: Task) => (task.id === id ? { ...task, name } : task)))
 
   const selectTask = (id: number | null) => setSelectedTask(tasks.find(task => task.id === id) || null)
 
-  const updateTaskContent = (id: number, content: string) => {
-    const newArray = tasks.map((task: Task) => (task.id === id ? { ...task, content } : task))
-    setTasks(newArray)
-    updateStore(newArray)
-  }
+  const updateTaskContent = (id: number, content: string) =>
+    setTasks(prev => prev.map((task: Task) => (task.id === id ? { ...task, content } : task)))
 
   return (
     <Context.Provider

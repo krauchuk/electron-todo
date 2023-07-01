@@ -29,7 +29,7 @@
 
 .leftPanel {
   flex: 1;
-  max-width: 300px;
+  max-width: 320px;
   background: rgba(255, 255, 255, 0.05);
 }
 

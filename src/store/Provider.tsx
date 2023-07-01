@@ -30,7 +30,7 @@ const Provider = ({ children }: { children: ReactNode }) => {
     updateStore(newArray)
   }
 
-  const selectTask = (id: number) => setSelectedTask(tasks.find(task => task.id === id) || null)
+  const selectTask = (id: number | null) => setSelectedTask(tasks.find(task => task.id === id) || null)
 
   return (
     <Context.Provider

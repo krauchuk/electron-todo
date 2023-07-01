@@ -3,11 +3,11 @@
   padding: 0.5rem;
   border: none;
   border-radius: 0.5rem;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.12);
   color: var(--color-grey);
   cursor: pointer;
 }
 
 .button:hover {
-  background: rgba(255, 255, 255, 0.01);
+  background: rgba(255, 255, 255, 0.075);
 }

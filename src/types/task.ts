@@ -6,7 +6,7 @@ export interface Task {
 
 export type TaskContext = {
   selectedTask: Task | null
-  selectTask: (id: number) => void
+  selectTask: (id: number | null) => void
   tasks: Task[]
   addTask: (task: Task) => void
   removeTask: (id: number) => void

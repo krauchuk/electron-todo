@@ -11,4 +11,5 @@ export type TaskContext = {
   addTask: (task: Task) => void
   removeTask: (id: number) => void
   renameTask: (id: number, name: string) => void
+  updateTaskContent: (id: number, content: string) => void
 }

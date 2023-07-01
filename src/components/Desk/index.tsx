@@ -2,11 +2,12 @@ import React, { useContext } from 'react'
 
 import Button from '../Button'
 import TaskList from '../TaskList'
+import TaskEditor from '../TaskEditor'
 import { Context } from '../../store/Provider'
 import styles from './Desk.module.css'
 
 const Desk = () => {
-  const { addTask, selectedTask } = useContext(Context)
+  const { addTask, selectedTask, tasks } = useContext(Context)
 
   const handleAddTask = () => {
     addTask({
@@ -23,9 +24,9 @@ const Desk = () => {
       </div>
       <div className={styles.workspace}>
         <div className={styles.leftPanel}>
-          <TaskList />
+          <TaskList tasks={tasks} />
         </div>
-        <div className={styles.rightPanel}>{selectedTask && <>{selectedTask.content}</>}</div>
+        <div className={styles.rightPanel}>{selectedTask && <TaskEditor task={selectedTask} />}</div>
       </div>
       <div className={styles.bottomPanel}>
         <a href="https://github.com/krauchuk/electron-todo" target="_blank">

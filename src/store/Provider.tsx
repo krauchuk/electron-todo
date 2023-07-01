@@ -32,6 +32,12 @@ const Provider = ({ children }: { children: ReactNode }) => {
 
   const selectTask = (id: number | null) => setSelectedTask(tasks.find(task => task.id === id) || null)
 
+  const updateTaskContent = (id: number, content: string) => {
+    const newArray = tasks.map((task: Task) => (task.id === id ? { ...task, content } : task))
+    setTasks(newArray)
+    updateStore(newArray)
+  }
+
   return (
     <Context.Provider
       value={{
@@ -41,6 +47,7 @@ const Provider = ({ children }: { children: ReactNode }) => {
         addTask,
         removeTask,
         renameTask,
+        updateTaskContent,
       }}
     >
       {children}

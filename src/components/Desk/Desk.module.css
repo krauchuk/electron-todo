@@ -31,8 +31,10 @@
   flex: 1;
   max-width: 320px;
   background: rgba(255, 255, 255, 0.05);
+  padding: 0.5rem;
 }
 
 .rightPanel {
   flex: 2;
+  padding: 0.5rem;
 }

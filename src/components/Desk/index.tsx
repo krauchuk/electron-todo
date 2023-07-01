@@ -10,6 +10,7 @@ const Desk = () => {
 
   const handleAddTask = () => {
     addTask({
+      id: Date.now(),
       name: 'New task',
       content: '',
     })
@@ -24,7 +25,7 @@ const Desk = () => {
         <div className={styles.leftPanel}>
           <TaskList />
         </div>
-        <div className={styles.rightPanel}>{selectedTask.id && <>{selectedTask.content}</>}</div>
+        <div className={styles.rightPanel}>{selectedTask && <>{selectedTask.content}</>}</div>
       </div>
       <div className={styles.bottomPanel}>
         <a href="https://github.com/krauchuk/electron-todo" target="_blank">

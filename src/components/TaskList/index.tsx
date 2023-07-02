@@ -6,7 +6,7 @@ import TaskListItem from '../TaskListItem'
 const TaskList = ({ tasks }: Props) => (
   <div>
     {tasks.map(task => (
-      <TaskListItem key={task.id} id={task.id} name={task.name} />
+      <TaskListItem key={task.id} id={task.id} name={task.name} isDone={task.isDone} />
     ))}
   </div>
 )

@@ -2,6 +2,7 @@ export interface Task {
   id: number
   name: string
   content: string
+  isDone: boolean
 }
 
 export type TaskContext = {
@@ -10,6 +11,5 @@ export type TaskContext = {
   tasks: Task[]
   addTask: () => void
   removeTask: (id: number) => void
-  renameTask: (id: number, name: string) => void
-  updateTaskContent: (id: number, content: string) => void
+  updateTask: (id: number, data: Partial<Task>) => void
 }

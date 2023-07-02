@@ -21,6 +21,7 @@ const Provider = ({ children }: { children: ReactNode }) => {
         id: Date.now(),
         name: 'New task',
         content: '',
+        isDone: false,
       },
     ])
 
@@ -31,13 +32,10 @@ const Provider = ({ children }: { children: ReactNode }) => {
     }
   }
 
-  const renameTask = (id: number, name: string) =>
-    setTasks(prev => prev.map((task: Task) => (task.id === id ? { ...task, name } : task)))
+  const updateTask = (id: number, data: Partial<Task>) =>
+    setTasks(prev => prev.map((task: Task) => (task.id === id ? { ...task, ...data } : task)))
 
   const selectTask = (id: number | null) => setSelectedTask(tasks.find(task => task.id === id) || null)
-
-  const updateTaskContent = (id: number, content: string) =>
-    setTasks(prev => prev.map((task: Task) => (task.id === id ? { ...task, content } : task)))
 
   return (
     <Context.Provider
@@ -47,8 +45,7 @@ const Provider = ({ children }: { children: ReactNode }) => {
         tasks,
         addTask,
         removeTask,
-        renameTask,
-        updateTaskContent,
+        updateTask,
       }}
     >
       {children}

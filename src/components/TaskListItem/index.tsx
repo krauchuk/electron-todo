@@ -6,11 +6,12 @@ import Button from '../Button'
 import TrashIcon from '../../icons/TrashIcon'
 import PenIcon from '../../icons/PenIcon'
 import TextInput from '../TextInput'
+import Checkbox from '../Checkbox'
 import { Props } from './types'
 import styles from './TaskListItem.module.css'
 
-const TaskListItem = ({ id, name }: Props) => {
-  const { selectTask, selectedTask, removeTask, renameTask } = useContext(Context)
+const TaskListItem = ({ id, name, isDone }: Props) => {
+  const { selectTask, selectedTask, removeTask, updateTask } = useContext(Context)
   const [isRenaming, setIsRenaming] = useState(false)
   const [newName, setNewName] = useState(name)
 
@@ -25,16 +26,18 @@ const TaskListItem = ({ id, name }: Props) => {
     removeTask(id)
   }
 
-  const handleRenameBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation()
-    selectTask(id)
+  const handleRenameBtn = () => {
     setNewName(name)
     setIsRenaming(true)
   }
 
   const handleRenameInput = () => {
-    renameTask(id, newName)
+    updateTask(id, { name: newName })
     setIsRenaming(false)
+  }
+
+  const handleCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
+    updateTask(id, { isDone: e.target.checked })
   }
 
   return (
@@ -54,7 +57,8 @@ const TaskListItem = ({ id, name }: Props) => {
       )}
       {!isRenaming && (
         <>
-          {name}
+          <Checkbox defaultValue={isDone} onChange={handleCheckbox} />
+          <span className={styles.taskName}>{name}</span>
           <div className={styles.buttons}>
             <Button className={styles.renameBtn} onClick={handleRenameBtn}>
               <PenIcon />

@@ -12,6 +12,9 @@ const Provider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks))
+    if (selectedTask) {
+      selectTask(selectedTask.id)
+    }
   }, [tasks])
 
   const addTask = () =>

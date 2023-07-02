@@ -4,6 +4,7 @@ export const { ipcRenderer } = window.require
       ipcRenderer: {
         on: () => {},
         once: () => {},
+        send: () => {},
         removeAllListeners: () => {},
       },
     }

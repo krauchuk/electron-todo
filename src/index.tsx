@@ -23,6 +23,14 @@ const App = () => {
     }
   }, [selectedTask?.id])
 
+  useEffect(() => {
+    if (selectedTask) {
+      ipcRenderer.send('show-remove-btn', selectedTask.name)
+    } else {
+      ipcRenderer.send('hide-remove-btn')
+    }
+  }, [selectedTask])
+
   return <Desk />
 }
 

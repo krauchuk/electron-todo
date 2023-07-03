@@ -2,8 +2,6 @@ const { TouchBar, ipcMain } = require('electron')
 
 const { TouchBarButton, TouchBarSpacer } = TouchBar
 
-let removeTaskBtn = null
-
 const getTouchBarConfig = win => {
   const addTaskBtn = new TouchBarButton({
     label: 'Add Task',
@@ -14,7 +12,7 @@ const getTouchBarConfig = win => {
     },
   })
 
-  removeTaskBtn = new TouchBarButton({
+  const removeTaskBtn = new TouchBarButton({
     label: 'Remove Task',
     accessibilityLabel: 'Remove Task',
     backgroundColor: '#c40000',
@@ -26,17 +24,17 @@ const getTouchBarConfig = win => {
 
   const spacer = new TouchBarSpacer({ size: 'large' })
 
+  ipcMain.on('show-remove-btn', (_, name) => {
+    removeTaskBtn.label = `Remove task: ${name}`
+    removeTaskBtn.enabled = true
+  })
+
+  ipcMain.on('hide-remove-btn', () => {
+    removeTaskBtn.label = 'Remove task'
+    removeTaskBtn.enabled = false
+  })
+
   return new TouchBar({ items: [addTaskBtn, spacer, removeTaskBtn] })
 }
-
-ipcMain.on('show-remove-btn', (_, name) => {
-  removeTaskBtn.label = `Remove task: ${name}`
-  removeTaskBtn.enabled = true
-})
-
-ipcMain.on('hide-remove-btn', () => {
-  removeTaskBtn.label = 'Remove task'
-  removeTaskBtn.enabled = false
-})
 
 exports.getTouchBarConfig = getTouchBarConfig

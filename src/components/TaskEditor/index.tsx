@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-import { Context } from '../../store/Provider'
+import { useTaskStore } from '../../store/task'
 import { Props } from './types'
 import styles from './TaskEditor.module.css'
 
 const TaskEditor = ({ task }: Props) => {
-  const { updateTask } = useContext(Context)
+  const { updateTask } = useTaskStore()
   const [content, setContent] = useState(task.content)
 
   useEffect(() => {

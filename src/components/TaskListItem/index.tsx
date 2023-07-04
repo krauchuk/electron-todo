@@ -1,7 +1,7 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import clsx from 'clsx'
 
-import { Context } from '../../store/Provider'
+import { useTaskStore } from '../../store/task'
 import Button from '../Button'
 import TrashIcon from '../../icons/TrashIcon'
 import PenIcon from '../../icons/PenIcon'
@@ -11,7 +11,7 @@ import { Props } from './types'
 import styles from './TaskListItem.module.css'
 
 const TaskListItem = ({ id, name, isDone }: Props) => {
-  const { selectTask, selectedTask, removeTask, updateTask } = useContext(Context)
+  const { selectTask, selectedTask, removeTask, updateTask } = useTaskStore()
   const [isRenaming, setIsRenaming] = useState(false)
   const [newName, setNewName] = useState(name)
 
@@ -24,6 +24,7 @@ const TaskListItem = ({ id, name, isDone }: Props) => {
   const handleRemoveBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
     removeTask(id)
+    selectTask(null)
   }
 
   const handleRenameBtn = () => {

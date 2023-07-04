@@ -5,11 +5,11 @@ export interface Task {
   isDone: boolean
 }
 
-export type TaskContext = {
+export type TaskState = {
   selectedTask: Task | null
   selectTask: (id: number | null) => void
   tasks: Task[]
-  addTask: () => void
+  createTask: () => void
   removeTask: (id: number) => void
   updateTask: (id: number, data: Partial<Task>) => void
 }

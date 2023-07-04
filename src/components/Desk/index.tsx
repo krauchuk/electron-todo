@@ -1,5 +1,6 @@
-import React, { useContext, useEffect } from 'react'
+import React from 'react'
 
+import { useTaskStore } from '../../store/task'
 import Button from '../Button'
 import TaskList from '../TaskList'
 import TaskEditor from '../TaskEditor'
@@ -7,12 +8,12 @@ import { Context } from '../../store/Provider'
 import styles from './Desk.module.css'
 
 const Desk = () => {
-  const { addTask, selectedTask, tasks } = useContext(Context)
+  const { createTask, selectedTask, tasks } = useTaskStore()
 
   return (
     <div className={styles.container}>
       <div className={styles.topPanel}>
-        <Button text="Add task" onClick={addTask} />
+        <Button text="Add task" onClick={createTask} />
       </div>
       <div className={styles.workspace}>
         <div className={styles.leftPanel}>

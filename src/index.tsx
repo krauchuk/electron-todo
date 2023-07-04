@@ -1,21 +1,24 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 
+import { useTaskStore } from './store/task'
 import Desk from './components/Desk'
-import Provider, { Context } from './store/Provider'
 import { ipcRenderer } from './utils'
 import './global.css'
 
 const App = () => {
-  const { selectedTask, addTask, removeTask } = useContext(Context)
+  const { createTask, removeTask, selectedTask, selectTask } = useTaskStore()
 
   useEffect(() => {
-    ipcRenderer.on('add-task', addTask)
+    ipcRenderer.on('add-task', createTask)
   }, [])
 
   useEffect(() => {
     ipcRenderer.once('remove-task', () => {
-      if (selectedTask) removeTask(selectedTask.id)
+      if (selectedTask) {
+        removeTask(selectedTask.id)
+        selectTask(null)
+      }
     })
 
     return () => {
@@ -35,8 +38,4 @@ const App = () => {
 }
 
 const container = document.body.appendChild(document.createElement('div'))
-createRoot(container).render(
-  <Provider>
-    <App />
-  </Provider>,
-)
+createRoot(container).render(<App />)

@@ -1,24 +1,32 @@
 import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 
 import { TaskState } from '../types/task'
 
-export const useTaskStore = create<TaskState>(set => ({
-  selectedTask: null,
-  tasks: JSON.parse(localStorage.getItem('tasks') || '[]'),
-  selectTask: id => set(state => ({ selectedTask: state.tasks.find(task => task.id === id) || null })),
-  createTask: () =>
-    set(state => ({
-      tasks: [
-        ...state.tasks,
-        {
-          id: Date.now(),
-          name: 'New task',
-          content: '',
-          isDone: false,
-        },
-      ],
-    })),
-  removeTask: id => set(state => ({ tasks: state.tasks.filter(task => task.id !== id) })),
-  updateTask: (id, newData) =>
-    set(state => ({ tasks: state.tasks.map(task => (task.id === id ? { ...task, ...newData } : task)) })),
-}))
+export const useTaskStore = create(
+  persist<TaskState>(
+    (set, get) => ({
+      selectedTask: null,
+      tasks: [],
+      selectTask: id => set(() => ({ selectedTask: get().tasks.find(task => task.id === id) || null })),
+      createTask: () =>
+        set(() => ({
+          tasks: [
+            ...get().tasks,
+            {
+              id: Date.now(),
+              name: 'New task',
+              content: '',
+              isDone: false,
+            },
+          ],
+        })),
+      removeTask: id => set(() => ({ tasks: get().tasks.filter(task => task.id !== id) })),
+      updateTask: (id, newData) =>
+        set(() => ({ tasks: get().tasks.map(task => (task.id === id ? { ...task, ...newData } : task)) })),
+    }),
+    {
+      name: 'task-storage',
+    },
+  ),
+)

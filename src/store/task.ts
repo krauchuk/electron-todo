@@ -3,8 +3,8 @@ import { persist } from 'zustand/middleware'
 
 import { TaskState } from '../types/task'
 
-export const useTaskStore = create(
-  persist<TaskState>(
+export const useTaskStore = create<TaskState>()(
+  persist(
     (set, get) => ({
       selectedTask: null,
       tasks: [],
@@ -27,6 +27,7 @@ export const useTaskStore = create(
     }),
     {
       name: 'task-storage',
+      partialize: state => ({ tasks: state.tasks }),
     },
   ),
 )

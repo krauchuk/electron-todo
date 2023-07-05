@@ -2,9 +2,9 @@ export const { ipcRenderer } = window.require
   ? window.require('electron')
   : {
       ipcRenderer: {
-        on: () => {},
-        once: () => {},
-        send: () => {},
-        removeAllListeners: () => {},
+        on: () => undefined,
+        once: () => undefined,
+        send: () => undefined,
+        removeAllListeners: () => undefined,
       },
     }

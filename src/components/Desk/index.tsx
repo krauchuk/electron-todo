@@ -21,7 +21,7 @@ const Desk = () => {
         <div className={styles.rightPanel}>{selectedTask && <TaskEditor task={selectedTask} />}</div>
       </div>
       <div className={styles.bottomPanel}>
-        <a href="https://github.com/krauchuk/electron-todo" target="_blank">
+        <a href="https://github.com/krauchuk/electron-todo" target="_blank" rel="noreferrer">
           Read
         </a>{' '}
         about this app

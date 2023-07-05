@@ -10,7 +10,8 @@
     "build": "tsc && vite build",
     "build:mac": "npm run build && electron-builder -m -c.extraMetadata.main=build/electron.js",
     "build:win": "npm run build && electron-builder -w -c.extraMetadata.main=build/electron.js",
-    "build:linux": "npm run build && electron-builder -l -c.extraMetadata.main=build/electron.js"
+    "build:linux": "npm run build && electron-builder -l -c.extraMetadata.main=build/electron.js",
+    "lint": "eslint . --ext .ts,.tsx"
   },
   "repository": {
     "type": "git",
@@ -21,9 +22,15 @@
   "devDependencies": {
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
+    "@typescript-eslint/eslint-plugin": "^5.61.0",
+    "@typescript-eslint/parser": "^5.61.0",
     "electron": "^25.2.0",
     "electron-builder": "^24.4.0",
     "electronmon": "^2.0.2",
+    "eslint": "^8.44.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-react": "^7.32.2",
     "typescript": "^5.1.6",
     "vite": "^4.3.9"
   },

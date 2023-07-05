@@ -11,6 +11,7 @@ const createWindow = () => {
       contextIsolation: false,
       nodeIntegration: true,
     },
+    show: false,
   })
 
   if (process.platform === 'darwin') {
@@ -23,6 +24,10 @@ const createWindow = () => {
   if (!app.isPackaged) {
     win.webContents.openDevTools()
   }
+
+  win.once('ready-to-show', () => {
+    win.show()
+  })
 }
 
 app.whenReady().then(() => {

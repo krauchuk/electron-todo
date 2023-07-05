@@ -4,7 +4,6 @@ import { useTaskStore } from '../../store/task'
 import Button from '../Button'
 import TaskList from '../TaskList'
 import TaskEditor from '../TaskEditor'
-import { Context } from '../../store/Provider'
 import styles from './Desk.module.css'
 
 const Desk = () => {

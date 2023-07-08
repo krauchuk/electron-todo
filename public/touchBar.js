@@ -1,3 +1,5 @@
+/*eslint-env node*/
+
 const { TouchBar, ipcMain } = require('electron')
 
 const { TouchBarButton, TouchBarSpacer } = TouchBar

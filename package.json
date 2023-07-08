@@ -17,7 +17,7 @@
     "type": "git",
     "url": "git+https://github.com/krauchuk/electron-todo.git"
   },
-  "author": "Ihar Krauchuk",
+  "author": "Ihar Krauchuk <ihar.krauchuk@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "@types/react": "^18.2.14",

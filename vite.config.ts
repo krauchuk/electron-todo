@@ -1,7 +1,7 @@
 export default {
   base: '',
   root: 'src',
-  publicDir: '../public',
+  publicDir: '../electron',
   build: {
     outDir: '../build',
   },

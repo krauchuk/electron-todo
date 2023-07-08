@@ -1,11 +1,10 @@
 {
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": ["src"],
   "exclude": ["node_modules", "build", "dist"],
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
     "jsx": "react",
-    "outDir": "./build",
     "strict": true,
     "esModuleInterop": true
   }

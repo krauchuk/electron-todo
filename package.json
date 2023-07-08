@@ -1,5 +1,6 @@
 {
   "name": "electron-todo",
+  "productName": "Your TODO",
   "version": "1.0.0",
   "description": "Simple todo app",
   "homepage": "./",

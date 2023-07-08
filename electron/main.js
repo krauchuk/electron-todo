@@ -1,9 +1,9 @@
-/*eslint-env node*/
+/* eslint-env node */
 
 const path = require('path')
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, Menu } = require('electron')
 
-const { getTouchBarConfig } = require('./touchBar.js')
+const { getTouchBarConfig, getMainMenu } = require('./configs')
 
 const createWindow = () => {
   const win = new BrowserWindow({
@@ -12,6 +12,7 @@ const createWindow = () => {
     webPreferences: {
       contextIsolation: false,
       nodeIntegration: true,
+      devTools: !app.isPackaged,
     },
     show: false,
   })
@@ -21,11 +22,10 @@ const createWindow = () => {
     win.setTouchBar(touchBar)
   }
 
-  win.loadURL(!app.isPackaged ? 'http://localhost:3000' : `file://${path.join(__dirname, 'index.html')}`)
+  const menu = getMainMenu(win)
+  Menu.setApplicationMenu(menu)
 
-  if (!app.isPackaged) {
-    win.webContents.openDevTools()
-  }
+  win.loadURL(!app.isPackaged ? 'http://localhost:3000' : `file://${path.join(__dirname, 'index.html')}`)
 
   win.once('ready-to-show', () => {
     win.show()

@@ -1,6 +1,6 @@
 export default {
   appId: 'com.electron.yourtodoapp',
-  productName: 'Your-todo',
+  productName: 'Your TODO',
   files: ['./build/**/*'],
   mac: {
     target: 'dmg',

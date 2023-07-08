@@ -1,6 +1,5 @@
 export default {
   appId: 'com.electron.yourtodoapp',
-  productName: 'Your TODO',
   files: ['./build/**/*'],
   mac: {
     target: 'dmg',
@@ -15,6 +14,7 @@ export default {
     icon: './build/icons/icon.png',
   },
   extraMetadata: {
+    productName: 'Your TODO',
     main: './build/main.js',
   },
 }

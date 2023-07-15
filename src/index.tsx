@@ -37,5 +37,4 @@ const App = () => {
   return <Desk />
 }
 
-const container = document.body.appendChild(document.createElement('div'))
-createRoot(container).render(<App />)
+createRoot(document.body).render(<App />)

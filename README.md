@@ -1,6 +1,6 @@
 # electron-todo
 
-A simple application to manage your tasks.\
+A simple application to manage your tasks.
 
 > **Warning**
 > Tested only on MacOS, so may not work correctly on Windows/Linux

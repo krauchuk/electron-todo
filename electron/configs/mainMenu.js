@@ -18,6 +18,18 @@ const getMainMenu = win => {
       ],
     },
     {
+      label: 'Edit',
+      submenu: [
+        { label: 'Undo', accelerator: 'CmdOrCtrl+Z', role: 'undo' },
+        { label: 'Redo', accelerator: 'Shift+CmdOrCtrl+Z', role: 'redo' },
+        { type: 'separator' },
+        { label: 'Cut', accelerator: 'CmdOrCtrl+X', role: 'cut' },
+        { label: 'Copy', accelerator: 'CmdOrCtrl+C', role: 'copy' },
+        { label: 'Paste', accelerator: 'CmdOrCtrl+V', role: 'paste' },
+        { label: 'Select All', accelerator: 'CmdOrCtrl+A', role: 'selectAll' },
+      ],
+    },
+    {
       label: 'View',
       submenu: [
         {
@@ -28,25 +40,13 @@ const getMainMenu = win => {
           },
           visible: !app.isPackaged,
         },
-        {
-          type: 'separator',
-          visible: !app.isPackaged,
-        },
-        {
-          role: 'togglefullscreen',
-        },
+        { type: 'separator', visible: !app.isPackaged },
+        { role: 'togglefullscreen' },
       ],
     },
     {
       role: 'window',
-      submenu: [
-        {
-          role: 'minimize',
-        },
-        {
-          role: 'close',
-        },
-      ],
+      submenu: [{ role: 'minimize' }, { role: 'close' }],
     },
     {
       role: 'help',
@@ -66,17 +66,7 @@ const getMainMenu = win => {
 
     items.unshift({
       label: name,
-      submenu: [
-        {
-          role: 'about',
-        },
-        {
-          type: 'separator',
-        },
-        {
-          role: 'quit',
-        },
-      ],
+      submenu: [{ role: 'about' }, { type: 'separator' }, { role: 'quit' }],
     })
   }
 
